@@ -7,15 +7,15 @@ const TodoList = () => {
     const [items, setItems] = useState([]);
 
     const addTodo = () => {
-        const newItem = inputRef.current.value.trim();
-        if (newItem === "") return;
+        const newItems = inputRef.current.value.trim();
+        if (newItems === "") return;
 
-        setItems(prevItems => [...prevItems, newItem]);
+        setItems(prevItems => [...prevItems, newItems]);
         inputRef.current.value = "";
         inputRef.current.focus();
     };
 
-    const handleTodoEnter = (e) => {
+    const handleTodo = (e) => {
         if (e.key === "Enter") {
            addTodo();
         }
@@ -23,16 +23,16 @@ const TodoList = () => {
 
     return (
         <div>
-            <div className="new-input">
-                <input type="text" className="new-btn" ref={inputRef} onKeyDown={handleTodoEnter} />
-                <button className="new-btn1" onClick={addTodo}>Add To list</button>
+            <div className="input">
+                <input type="text" className="btn" ref={inputRef} onKeyDown={handleTodo} />
+                <button className="btn1" onClick={addTodo}>Add To list</button>
             </div>
-            <div className="new-list">
+            <div className="list">
                 {items.map((item, index) => (
                     <ListItem text={item} key={index} />
                 ))}
             </div>
-            <div className="new-last">
+            <div className="last">
                 <button
                     onClick={() => {
                         inputRef.current.focus();
